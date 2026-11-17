@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="CrimeWatch 360 public safety and neighbourhood awareness dashboard.">
+  <title>CRIMEWATCH 360 | Public Safety</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CrimeWatch 360 home"><span class="brand-mark">CW</span><span>CRIMEWATCH <b>360</b><small>PUBLIC SAFETY NETWORK</small></span></a>
+    <div class="top-actions"><span class="live-dot"></span><span id="connectionStatus">Connecting…</span><button class="icon-btn" id="refreshBtn" aria-label="Refresh dashboard" title="Refresh">↻</button></div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div><p class="eyebrow">YOUR SAFETY. YOUR COMMUNITY.</p><h1>Stay alert.<br><span>Stay protected.</span></h1><p class="hero-copy">Local safety information and emergency tools, all in one place.</p></div>
+      <button class="sos-button" id="sosButton"><span class="sos-pulse"></span><strong>SOS</strong><small>CALL EMERGENCY</small></button>
+    </section>
+
+    <section class="location-panel panel">
+      <div class="section-icon">⌖</div><div class="location-copy"><span class="muted-label">YOUR CURRENT AREA</span><strong id="locationText">Location not detected</strong><small id="locationNote">Allow location access to identify your area.</small></div>
+      <button class="outline-btn" id="locateBtn">USE MY LOCATION</button>
+    </section>
+
+    <section class="section-heading"><div><p class="eyebrow">COMMUNITY INTELLIGENCE</p><h2>Area crime snapshot</h2></div><span class="update-label" id="updatedAt">Not yet updated</span></section>
+    <div class="stats-grid">
+      <article class="stat-card"><span class="stat-symbol">◎</span><span class="muted-label">REPORTED INCIDENTS</span><strong id="incidentCount">—</strong><small id="incidentPeriod">Awaiting verified data</small></article>
+      <article class="stat-card"><span class="stat-symbol">↗</span><span class="muted-label">MOST REPORTED CATEGORY</span><strong class="stat-category" id="topCategory">—</strong><small>From connected public data</small></article>
+      <article class="stat-card"><span class="stat-symbol">◷</span><span class="muted-label">DATA STATUS</span><strong class="stat-category" id="dataStatus">Not connected</strong><small id="dataSource">No crime feed configured</small></article>
+    </div>
+    <div class="panel chart-panel">
+      <div class="panel-heading"><div><h3>Incident breakdown</h3><p>Area-level statistics only. No personal criminal records.</p></div><span class="tag">VERIFIED FEED</span></div>
+      <div id="crimeBreakdown" class="breakdown"><p class="empty-state">Crime statistics will appear here when a trusted data source is connected. Sample figures are deliberately not displayed as real data.</p></div>
+    </div>
+
+    <section class="section-heading"><div><p class="eyebrow">QUICK RESPONSE</p><h2>Your emergency contacts</h2></div><button class="text-btn" id="editContactsBtn">EDIT CONTACTS</button></section>
+    <div class="contacts-grid" id="contactsGrid"></div>
+    <p class="fine-print">Tap a contact to open your phone dialler. Calls are not placed automatically in the background.</p>
+
+    <section class="section-heading"><div><p class="eyebrow">BE INFORMED</p><h2>Public safety centre</h2></div></section>
+    <div class="info-grid">
+      <article class="info-card"><span class="info-icon">🚨</span><div><h3>Emergency response</h3><p>Move to a safer, public place if possible. Give responders your location, the nature of the incident and any immediate hazards.</p><a href="tel:112">Call 112 ↗</a></div></article>
+      <article class="info-card"><span class="info-icon">🚗</span><div><h3>Road emergencies</h3><p>For a road crash, move away from traffic if safe, warn approaching road users and request emergency assistance.</p><a href="tel:122">FRSC: 122 ↗</a></div></article>
+      <article class="info-card"><span class="info-icon">🛡️</span><div><h3>Personal security</h3><p>Keep valuables out of sight, use well-lit routes, tell someone you trust your journey and avoid confronting suspected offenders.</p></div></article>
+      <article class="info-card"><span class="info-icon">📱</span><div><h3>Digital safety</h3><p>Do not share OTPs, passwords or banking PINs. Verify urgent payment requests through a separate trusted channel.</p></div></article>
+    </div>
+
+    <section class="notice panel"><strong>Important safety note</strong><p>Crime statistics are not a guarantee of safety and may be incomplete or delayed. In an immediate threat, leave the area if safe and contact emergency services. Do not use this app as a substitute for emergency response.</p></section>
+    <footer>CRIMEWATCH 360 <span>•</span> Community awareness, not law enforcement <span>•</span> <a href="https://www.lagosstate.gov.ng/connect" target="_blank" rel="noopener">Lagos State services</a></footer>
+  </main>
+
+  <dialog id="contactsDialog">
+    <form method="dialog" id="contactsForm">
+      <div class="dialog-head"><div><p class="eyebrow">PERSONAL SAFETY NETWORK</p><h2>Manage contacts</h2></div><button class="close-btn" value="cancel" aria-label="Close">×</button></div>
+      <p class="dialog-help">Add up to five trusted people. Numbers are stored only in this browser on this device.</p>
+      <div id="contactFields"></div>
+      <div class="dialog-actions"><button type="button" class="outline-btn" id="cancelContacts">CANCEL</button><button type="submit" class="primary-btn">SAVE CONTACTS</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
